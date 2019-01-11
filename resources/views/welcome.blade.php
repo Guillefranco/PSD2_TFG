@@ -1,98 +1,80 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+@extends('layouts.app')
+@section ('body-class', 'login-page sidebar-collapse')
+@section('content')
+<div class="page-header header-filter" style="background-image: url('{{('img/bg7.jpg')}}'); background-size: cover; background-position: top center;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+        <div class="card card-login">
+             <form method="POST" action="{{ route('login') }}"> 
+                @csrf
+                <div class="card-header card-header-primary text-center">
+                   <h4 class="card-title">Inicio de sesión </h4>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <p class="description text-center"></p>
+                <div class="card-body">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                              <i class="material-icons">email</i>
+                         </span>
+                               <input id="email" type="email" placeholder="Email..." class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                    </div>
+                       <div class="input-group">
+                         <span class="input-group-text">
+                              <i class="material-icons">lock_outline</i>
+                         </span>
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Password...">
+                    </div>
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+                </br>
+            </br>
+        </br>
+                   <div class="footer text-center">
+                      <button type="submit" class="btn btn-primary">Entrar</button>
+                      
+               </div>
+               <!-- <a class="btn btn-link" href="{{ route('password.request')}}">
+                  ¿Olvidaste tu contraseña?
+              </a> -->
+          </form>
+          </div>
+       </div>
+    </div>
+ </div>
+ <footer class="footer">
+    <div class="container">
+       <nav class="float-left">
+          <ul>
+             <li>
+                <a href="https://www.creative-tim.com">
+                Creative Tim
+                </a>
+             </li>
+             <li>
+                <a href="https://creative-tim.com/presentation">
+                About Us
+                </a>
+             </li>
+             <li>
+                <a href="http://blog.creative-tim.com">
+                Blog
+                </a>
+             </li>
+             <li>
+                <a href="https://www.creative-tim.com/license">
+                Licenses
+                </a>
+             </li>
+          </ul>
+       </nav>
+       <div class="copyright float-right">
+          &copy;
+          <script>
+             document.write(new Date().getFullYear())
+          </script>, made with <i class="material-icons">favorite</i> by
+          <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+       </div>
+    </div>
+ </footer>
+</div>
+@endsection
