@@ -1,80 +1,100 @@
 @extends('layouts.app')
 @section ('body-class', 'login-page sidebar-collapse')
 @section('content')
-<div class="page-header header-filter" style="background-image: url('{{('img/bg7.jpg')}}'); background-size: cover; background-position: top center;">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-        <div class="card card-login">
-             <form method="POST" action="{{ route('login') }}"> 
-                @csrf
-                <div class="card-header card-header-primary text-center">
-                   <h4 class="card-title">Inicio de sesión </h4>
-                </div>
-                <p class="description text-center"></p>
-                <div class="card-body">
-                    <div class="input-group">
-                        <span class="input-group-text">
-                              <i class="material-icons">email</i>
-                         </span>
-                               <input id="email" type="email" placeholder="Email..." class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-                    </div>
-                       <div class="input-group">
-                         <span class="input-group-text">
-                              <i class="material-icons">lock_outline</i>
-                         </span>
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Password...">
-                    </div>
-                </div>
-                </br>
-            </br>
-        </br>
-                   <div class="footer text-center">
-                      <button type="submit" class="btn btn-primary">Entrar</button>
-                      
-               </div>
-               <!-- <a class="btn btn-link" href="{{ route('password.request')}}">
-                  ¿Olvidaste tu contraseña?
-              </a> -->
-          </form>
-          </div>
-       </div>
-    </div>
- </div>
- <footer class="footer">
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/profile_city.jpg')">
     <div class="container">
-       <nav class="float-left">
-          <ul>
-             <li>
-                <a href="https://www.creative-tim.com">
-                Creative Tim
-                </a>
-             </li>
-             <li>
-                <a href="https://creative-tim.com/presentation">
-                About Us
-                </a>
-             </li>
-             <li>
-                <a href="http://blog.creative-tim.com">
-                Blog
-                </a>
-             </li>
-             <li>
-                <a href="https://www.creative-tim.com/license">
-                Licenses
-                </a>
-             </li>
-          </ul>
-       </nav>
-       <div class="copyright float-right">
-          &copy;
-          <script>
-             document.write(new Date().getFullYear())
-          </script>, made with <i class="material-icons">favorite</i> by
-          <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-       </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="title">¡Bienvenido a la tienda online!</h1>
+          <h4>Aquí encontrará todo lo que necesite para su hogar, familia, entretenimiento, ocio, moda, videojuegos
+          deportes, música, películas y mucho más! Siga visitando la página.</h4>
+          <br>
+          <!--Cambiar URL para mostrar un producto cualquiera -->
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">
+            <i class="fa fa-play"></i> Watch video
+          </a>
+        </div>
+      </div>
     </div>
- </footer>
-</div>
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="title">Let&apos;s talk product</h2>
+            <h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn&apos;t scroll to get here. Add a button if you want the user to see more.</h5>
+          </div>
+        </div>
+        <div class="features">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-info">
+                  <i class="material-icons">chat</i>
+                </div>
+                <h4 class="info-title">Free Chat</h4>
+                <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-success">
+                  <i class="material-icons">verified_user</i>
+                </div>
+                <h4 class="info-title">Verified Users</h4>
+                <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-danger">
+                  <i class="material-icons">fingerprint</i>
+                </div>
+                <h4 class="info-title">Fingerprint</h4>
+                <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section text-center">
+        <h2 class="title">Productos</h2>
+        <div class="team">
+          <div class="row">
+             @foreach ($products as $product)
+            <div class="col-md-4">
+              <div class="team-player">
+                <div class="card card-plain">
+                  <img src="{{$product->images()->first()->image}}" class="rounded-circle img-fluid">            
+                  <h4 class="card-title"> 
+                    <a href="{{url('/products/'.$product->id) }}">{{$product->name}} </a>
+                    <br>
+                    <small class="card-description text-muted">{{$product->category->name}}</small>
+                  </h4>
+                  <div class="card-body">
+                    <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some {{$product->description}}
+                      <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endforeach
+                </div>
+
+              </div>
+                 <div class="text-center">
+                  {{ $products->links()}}
+            </div>
+          </div>
+        </div>
+      </div>
+             </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection

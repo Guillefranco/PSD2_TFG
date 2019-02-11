@@ -28,9 +28,9 @@
             <ul class="navbar-nav ml-auto">
               <li class="dropdown nav-item">
                 @guest
-<!--                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li> -->
+                </li>
                 @if (Route::has('register'))
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
@@ -41,24 +41,29 @@
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        {{ __('Cerrar Sesión') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <div class="dropdown">
+                      <ul class="dropdown-menu">
+                        <li> 
+                     @if (auth()->user()->admin)
+                          <a class="dropdown-item" href="{{url('/admin/products')}}" >Administración productos</a>
+                        </li>
+                        @endif
+                        <li><a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();"> {{ __('Cerrar Sesión') }}  </a></li>
+                      </ul>
+                    </div>
+                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </div>
+              </div>
             </li>
             @endguest
         </ul>
     </div>
 </div>
 </nav>
+
 @yield('content') <!-- Continuación de home.blade -->
 <!--   Core JS Files   -->
 <script src="{{ asset('/js/core/jquery.min.js')}}" type="text/javascript"></script>

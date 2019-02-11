@@ -17,9 +17,14 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
 
             $table->string('name');
-            $table->string('description');
-            $table->string('image');
-
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
+            
+            
+            //$table->boolean('bbva');
+            //$table->boolean('Santandder');
+            //$table->boolean('bankia');
+            //$table->boolean('sabadell');
             
             $table->timestamps();
         });
