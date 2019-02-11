@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
     	factory(Product::class, 15 )-> create();
         factory(ProductImage::class, 200)->create();*/
 
-        $categories = factory(Category::class, 5)-> create();
+        $categories = factory(Category::class, 4)-> create();
         $categories->each(function ($category){
             $products = factory(Product::class, 15)->make();
             $category->products()->saveMany($products);
