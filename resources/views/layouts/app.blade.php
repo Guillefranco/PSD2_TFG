@@ -16,18 +16,19 @@
 <!-- CSS Files -->
 <link href="{{ asset('css/material-kit.css')}}" rel="stylesheet" />
 </head>
-<body class="@yield ('body-class')>
+<body class="@yield ('body-class')">
     <body class="login-page sidebar-collapse">
-      <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+      <nav class="navbar navbar-inverse navbar-expand-lg bg-dark" color-on-scroll="100" id="sectionsNav">
         <div class="container">
           <div class="navbar-translate">
-            <a class="navbar-brand" href="{{url('/register')}}">
+            <a class="navbar-brand" href="{{url('/')}}">
             APP ONLINE PSD2 </a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <li class="dropdown nav-item">
                 @guest
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
@@ -44,8 +45,11 @@
                     <div class="dropdown">
                       <ul class="dropdown-menu">
                         <li> 
+                          <a class="dropdown-item" href="{{url('/home')}}" >Carrito de compras</a>
+                        </li>
                      @if (auth()->user()->admin)
                           <a class="dropdown-item" href="{{url('/admin/products')}}" >Administración productos</a>
+
                         </li>
                         @endif
                         <li><a class="dropdown-item" href="{{ route('logout') }}"

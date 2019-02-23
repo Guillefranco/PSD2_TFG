@@ -33,29 +33,6 @@
               <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" value="{{ old('apellidos') }}" required autofocus>
           </div>
 
-          https://styde.net/validacion-de-checkbox-con-form-requests-en-laravel/
-
-          <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="material-icons">business</i>
-              </span>
-          </div>
-        <li>
-          <input type="checkbox" value="BBVA" name="banco[]" /><label>BBVA</label>
-      </li>
-          <li>
-        <input type="checkbox" value="Santander" name="banco[]" /><label>Santander</label>
-        </li>    
-        <li>
-          <input type="checkbox" value="Bankia" name="banco[]" /><label>Bankia</label>
-        </li>
-        <li>
-          <input type="checkbox" value="Sabadell" name="banco[]" /><label>Sabadell</label>
-        </li>
-      </div>
-
-
                       <div class="input-group">
                           <span class="input-group-text">
                                 <i class="material-icons">email</i>

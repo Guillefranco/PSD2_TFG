@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateCartDetailsTable extends Migration
 {
     /**
@@ -15,19 +13,18 @@ class CreateCartDetailsTable extends Migration
     {
         Schema::create('cart_details', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->integer('quantity');
-
+            // FK header
             $table->integer('cart_id')->unsigned();
             $table->foreign('cart_id')->references('id')->on('carts');
-
+            // FK product
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-
+            
+            $table->integer('quantity');
+            $table->integer('discount')->default(0); // % int
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
